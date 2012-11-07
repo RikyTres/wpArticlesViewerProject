@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * Front to the WordPress application. This file doesn't do anything, but loads
  * wp-blog-header.php which does and tells WordPress to load the theme.
  *
@@ -16,6 +16,7 @@ define('WP_USE_THEMES', true);
 /** Loads the WordPress Environment and Template */
 require('./wp-blog-header.php');
 
+global $post;
 
 /* Creo le condizioni di where */
 $meta_query = array(
@@ -28,7 +29,7 @@ $meta_query = array(
 	);
 
 /* Argomenti standard*/
-$args = array(                                   
+/*$args = array(                                   
 	'numberposts' => 5,
 	'suppress_filters' => false,
 	'post_status' => 'publish',
@@ -37,7 +38,8 @@ $args = array(
 	'orderby'     => 'meta_value',
 	'order'       => 'ASC',
 	'meta_query'  => $meta_query
-);
+);*/
+$args = array( 'numberposts' => 5, 'orderby' => 'rand' );
 
 /* Aggiungo il filtro per aggiungere colonne */
 add_filter( 'posts_fields', function( $fields ) {
@@ -49,10 +51,13 @@ add_filter( 'posts_fields', function( $fields ) {
 $posts = get_posts( $args );
 ?>
 
+<h1>Test page!</h1>
+
 <ul>
 <?php foreach( $myposts as $post ) :	setup_postdata($post); ?>
 	<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
 <?php endforeach; ?>
 </ul>
 
-?>
+</body>
+</html>
