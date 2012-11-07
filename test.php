@@ -1,4 +1,22 @@
-<?PHP
+<?php
+ /**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
+
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define('WP_USE_THEMES', true);
+
+/** Loads the WordPress Environment and Template */
+require('./wp-blog-header.php');
+
+
 /* Creo le condizioni di where */
 $meta_query = array(
 	array(
@@ -29,4 +47,12 @@ add_filter( 'posts_fields', function( $fields ) {
 }, 10, 1 );
 
 $posts = get_posts( $args );
+?>
+
+<ul>
+<?php foreach( $myposts as $post ) :	setup_postdata($post); ?>
+	<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
+<?php endforeach; ?>
+</ul>
+
 ?>
