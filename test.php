@@ -1,24 +1,9 @@
+<?php get_header(); ?>
+<h1>Controllo</h1>
 <?php
-/**
- * Front to the WordPress application. This file doesn't do anything, but loads
- * wp-blog-header.php which does and tells WordPress to load the theme.
- *
- * @package WordPress
- */
-
-/**
- * Tells WordPress to load the WordPress theme and output it.
- *
- * @var bool
- */
-define('WP_USE_THEMES', true);
-
-/** Loads the WordPress Environment and Template */
-require('./wp-blog-header.php');
-
 global $post;
 
-/* Creo le condizioni di where */
+//////* Creo le condizioni di where *///////
 $meta_query = array(
 	array(
 		'key'		=> 'my_meta_key',
@@ -28,7 +13,7 @@ $meta_query = array(
 		)
 	);
 
-/* Argomenti standard*/
+////////* Argomenti standard*/////////
 /*$args = array(                                   
 	'numberposts' => 5,
 	'suppress_filters' => false,
@@ -59,5 +44,4 @@ $posts = get_posts( $args );
 <?php endforeach; ?>
 </ul>
 
-</body>
-</html>
+<?php get_footer(); ?>
